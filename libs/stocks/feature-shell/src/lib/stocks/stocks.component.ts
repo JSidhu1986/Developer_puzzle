@@ -33,7 +33,7 @@ export class StocksComponent implements OnInit {
       const { symbol, selectedFromDate,  selectedToDate} = this.stockPickerForm.value;
       const fromDate = moment(selectedFromDate).format('YYYY-MM-DD');
       const toDate = moment(selectedToDate).format('YYYY-MM-DD');
-      this.priceQuery.fetchQuote(symbol, fromDate, toDate);
+      this.priceQuery.fetchQuote(symbol, "max", fromDate, toDate);
     }
   }
 
