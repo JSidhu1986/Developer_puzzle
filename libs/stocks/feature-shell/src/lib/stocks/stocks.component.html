@@ -20,7 +20,7 @@
   <mat-form-field>
     <mat-label>Favorite time period</mat-label>
     <mat-select formControlName="period">
-      <mat-option
+      <mat-option (click)="fetchQuote()"
         *ngFor="let timePeriod of timePeriods"
         [value]="timePeriod.value"
       >
