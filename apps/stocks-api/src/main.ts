@@ -4,29 +4,29 @@
  **/
 import { Server } from 'hapi';
 
-const init = async () => {
-  const server = new Server({
-    port: 3333,
-    host: 'localhost'
-  });
+const stockPriceRoutesPlugin = require('../src/app/plugin/stock-routes');
+const stockPriceCachePlugin = require('../src/app/plugin/cache');
 
-  server.route({
-    method: 'GET',
-    path: '/',
-    handler: (request, h) => {
-      return {
-        hello: 'world'
-      };
-    }
-  });
-
-  await server.start();
-  console.log('Server running on %s', server.info.uri);
-};
-
-process.on('unhandledRejection', err => {
-  console.log(err);
-  process.exit(1);
+const server = new Server({
+  port: 3333,
+  host: 'localhost'
 });
 
-init();
+const start = async function () {
+  try {
+    await server.register([
+      {
+        plugin: stockPriceRoutesPlugin,
+      }, 
+      {
+        plugin: stockPriceCachePlugin,
+      }
+    ]);
+    await server.start();
+    console.log('Server running on %s', server.info.uri);
+  } catch (err) {
+    console.log(err);
+    process.exit(1);
+  }
+};
+start();
