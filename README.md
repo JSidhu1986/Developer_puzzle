@@ -48,7 +48,7 @@ Application is created in modular way by creating different apps for front end a
 
 2. What would you change?
 
-I will also move materail imports in separate module as it will help in future if we are using more materail modules.
+I will also move material imports in separate module as it will help in future if we are using more materail modules.
 
 In current state Go button is enabled even when user haven't added any value. I will keep button disabled until user enters value in both fields. 
 
