@@ -60,8 +60,10 @@ In current state stock-api app is useless and if the application is this simple 
 
 3. Are there any code smells or problematic implementations?
 
-Graph is not displayed because the ngIf condition. Fixed it.
+Graph is not displayed because of ngIf condition. Fixed it.
+
 First field only has error message. Added for both.
+
 Displaying error message condition is also wrong it should be or instead of and. Fixed it
 
 > Make a PR to fix at least one of the issues that you identify
