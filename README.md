@@ -43,8 +43,26 @@ A proxy has been set up in `stocks` to proxy calls to `locahost:3333` which is t
 Please provide a short code review of the base `master` branch:
 
 1. What is done well?
+
+Application is created in modular way by creating different apps for front end and middleware. By having separate apps for frontend and middleware will allow to expand, enhance and maintain each layer indepentently. Using Angular material and Google chart was also good. It saved lot of effort which would have needed to add functionlaities which these libraries provide out of the box. Also it saves lot of effort in maintain the same code. Managing the state of the frontend app by using ngrx helped in better data flow and safe state update. Once the application becomes more complex it will help in avoiding lot of bugs which can be introduced if we wrote our own code for state management.
+
 2. What would you change?
+
+I will also move materail imports in separate module as it will help in future if we are using more materail modules.
+
+In current state Go button is enabled even when user haven't added any value. I will keep button disabled until user enters value in both fields. 
+
+Also if user clicks Go button without entering values then we are not showing any error message. Will add error message for that.
+
+If api call returning empty response then we are showing a wierd error message and if it return error message then we are not showing anything in the UI. Error handling is not implemented properly. It will be better to handle error scenario and corner case properly. 
+
+In current state stock-api app is useless and if the application is this simple as it is in current state then I don't think it is  not a good idea to create this complex code. 
+
 3. Are there any code smells or problematic implementations?
+
+Graph is not displayed because the ngIf condition. Fixed it.
+First field only has error message. Added for both.
+Displaying error message condition is also wrong it should be or instead of and. Fixed it
 
 > Make a PR to fix at least one of the issues that you identify
 
