@@ -19,7 +19,7 @@ export class ChartComponent implements OnInit {
   chart: {
     title: string;
     type: string;
-    data: any;
+    data: [];
     columnNames: string[];
     options: any;
   };
@@ -27,7 +27,7 @@ export class ChartComponent implements OnInit {
 
   ngOnInit() {
     this.chart = {
-      title: '',
+      title: 'Stock Price History Chart',
       type: 'LineChart',
       data: [],
       columnNames: ['period', 'close'],
