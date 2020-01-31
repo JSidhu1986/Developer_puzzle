@@ -66,6 +66,10 @@ First field only has error message. Added for both.
 
 Displaying error message condition is also wrong it should be or instead of and. Fixed it
 
+Handled error case when API returns error.
+
+Fixed test case setup also.
+
 > Make a PR to fix at least one of the issues that you identify
 
 ### Task 2
