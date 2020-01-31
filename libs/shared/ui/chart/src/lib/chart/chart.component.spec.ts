@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ChartComponent } from './chart.component';
+import { GoogleChartsModule } from 'angular-google-charts';
+import { Actions } from '@ngrx/effects';
 
 describe('ChartComponent', () => {
   let component: ChartComponent;
@@ -7,7 +9,11 @@ describe('ChartComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChartComponent ]
+      imports: [
+        GoogleChartsModule
+      ],
+      declarations: [ ChartComponent ],
+      providers: [ Actions ]
     })
     .compileComponents();
   }));
