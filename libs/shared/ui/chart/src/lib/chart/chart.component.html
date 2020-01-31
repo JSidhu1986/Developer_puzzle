@@ -1,5 +1,5 @@
 <google-chart
-  *ngIf="chartData"
+  *ngIf="chartData && !errorMessage"
   [title]="chart.title"
   [type]="chart.type"
   [data]="chartData"
@@ -7,3 +7,5 @@
   [options]="chart.options"
 >
 </google-chart>
+
+<div *ngIf="errorMessage" class="alert">{{errorMessage}}</div>
