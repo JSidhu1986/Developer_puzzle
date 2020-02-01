@@ -6,7 +6,7 @@ import {
   OnInit
 } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Actions, ofType } from '@ngrx/effects';
+import { PRICEQUERY_ERROR_MESSAGE } from '@coding-challenge/stocks/data-access-app-config'
 
 @Component({
   selector: 'coding-challenge-chart',
@@ -15,9 +15,10 @@ import { Actions, ofType } from '@ngrx/effects';
 })
 export class ChartComponent implements OnInit {
   @Input() data$: Observable<any>;
+  @Input() error$: Observable<any>;
   chartData: any;
-  error: any;
-  errorMessage: string = '';
+  errorMessage = '';
+  isError = false;
 
   chart: {
     title: string;
@@ -26,7 +27,7 @@ export class ChartComponent implements OnInit {
     columnNames: string[];
     options: any;
   };
-  constructor(private cd: ChangeDetectorRef, private action$: Actions) {}
+  constructor(private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.chart = {
@@ -39,12 +40,12 @@ export class ChartComponent implements OnInit {
 
     this.data$.subscribe(newData => {
       this.chartData = newData;
-      this.errorMessage = '';
+      this.isError = false;
     });
 
-    this.action$.pipe(ofType('priceQuery.error')).subscribe(error => {
-      this.error = error;
-      this.errorMessage = 'No data available for the selected option due to: ' + this.error.error.error;
-    })
+    this.error$.subscribe(error => {
+      this.isError = true;
+      this.errorMessage = PRICEQUERY_ERROR_MESSAGE + error.error;
+    });
   }
 }
