@@ -20,15 +20,13 @@ describe('ChartComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ChartComponent);
     component = fixture.componentInstance;
+    component.data$ = new Observable(observer => {
+      observer.next([]);
+    });
+    component.error$ = new Observable(observer => {
+      observer.next([]);
+    });
     fixture.detectChanges();
-    component.data$ = new Observable((observer) => {
-      observer.next("bla bla bla")
-      observer.complete()
-    });
-    component.error$ = new Observable((observer) => {
-      observer.next("bla bla bla")
-      observer.complete()
-    });
   });
 
   it('should create', () => {
