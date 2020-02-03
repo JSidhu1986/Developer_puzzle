@@ -1,7 +1,6 @@
 export const stockPriceRoutesPlugin = {
     name: 'stock-price-routes',
-    version: '1.0.0',
-    register: function (server, options, next) {
+    register: function (server) {
         server.route({
             method: 'GET',
             path: '/beta/stock/{symbol}/chart/{period}',
@@ -12,6 +11,5 @@ export const stockPriceRoutesPlugin = {
               return reply.response(stockPricesForPeriod);
             }
         });
-        next();
     }
 };

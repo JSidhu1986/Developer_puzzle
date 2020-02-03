@@ -3,9 +3,8 @@
  * This is only a minimal backend to get started.
  **/
 import { Server } from 'hapi';
-
-const stockPriceRoutesPlugin = require('../src/app/plugin/stock-routes');
-const stockPriceCachePlugin = require('../src/app/plugin/cache');
+import { stockPriceRoutesPlugin } from './app/plugin/stock-routes';
+import { stockPriceCachePlugin } from './app/plugin/cache';
 
 const server = new Server({
   port: 3333,

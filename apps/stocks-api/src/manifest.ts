@@ -1,5 +1,5 @@
-const stockPriceRoutesPlugin = require('../src/app/plugin/stock-routes');
-const stockPriceCachePlugin = require('../src/app/plugin/cache');
+import { stockPriceRoutesPlugin } from './app/plugin/stock-routes';
+import { stockPriceCachePlugin } from './app/plugin/cache';
 
 export const manifest = {
     server: {

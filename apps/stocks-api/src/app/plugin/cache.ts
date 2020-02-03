@@ -2,7 +2,6 @@ import { getStockPrice } from '../service/stocksPriceService';
 
 export const stockPriceCachePlugin = {
     name: 'stock-price-cache',
-    version: '1.0.0',
     register: function (server) {
         const options = {
             cache: {

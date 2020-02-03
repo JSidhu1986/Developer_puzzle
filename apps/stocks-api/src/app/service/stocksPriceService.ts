@@ -1,6 +1,6 @@
 import { environment } from '../../environments/environment';
 
-const Wreck = require('wreck');
+const Wreck = require('@hapi/wreck');
 
 export const getStockPrice =  function (symbol, period) {
  

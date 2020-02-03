@@ -6,13 +6,9 @@
 const Glue = require('@hapi/glue');
 const manifest = require('./manifest');
 
-const options = {
-    relativeTo: __dirname
-};
-
 const startServer = async function () {
     try {
-        const server = await Glue.compose(manifest, options);
+        const server = await Glue.compose(manifest);
         await server.start();
         console.log('hapi days!');
     }
