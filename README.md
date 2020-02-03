@@ -70,6 +70,9 @@ Handled error case when API returns error.
 
 Fixed test case setup also.
 
+In chart.component.ts we are subscribing to the data$ observable but not unsubcribing it. It can cause memory leak.
+To fix it we can use asnyc pipe or rxjs takenUtil or we can write code in ngOnDestroy for unsubscribing. Fixed it using async pipe in the template.
+
 > Make a PR to fix at least one of the issues that you identify
 
 ### Task 2
