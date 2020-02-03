@@ -16,6 +16,8 @@ import { PRICEQUERY_ERROR_MESSAGE } from '@coding-challenge/stocks/data-access-a
 export class ChartComponent implements OnInit {
   @Input() data$: Observable<any>;
   @Input() error$: Observable<any>;
+  private dataSubscription;
+  private errorSubscription;
   chartData: any;
   errorMessage = '';
   isError = false;
@@ -38,14 +40,19 @@ export class ChartComponent implements OnInit {
       options: { title: `Stock price`, width: '600', height: '400' }
     };
 
-    this.data$.subscribe(newData => {
+    this.dataSubscription = this.data$.subscribe(newData => {
       this.chartData = newData;
       this.isError = false;
     });
 
-    this.error$.subscribe(error => {
+    this.errorSubscription = this.error$.subscribe(error => {
       this.isError = true;
       this.errorMessage = PRICEQUERY_ERROR_MESSAGE + error.error;
     });
+  }
+
+  ngOnDestroy() {
+    this.dataSubscription.unsubscribe();
+    this.errorSubscription.unsubscribe();
   }
 }
