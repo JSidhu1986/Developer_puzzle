@@ -19,8 +19,7 @@ export function transformPriceQueryResponse(
           'change',
           'changePercent',
           'label',
-          'changeOverTime',
-          'close'
+          'changeOverTime'
         ]),
         dateNumeric: parse(responseItem.date).getTime()
       } as PriceQuery)
@@ -49,8 +48,7 @@ export function transformPriceQueryResponseForCustomDates(
             'change',
             'changePercent',
             'label',
-            'changeOverTime',
-            'close'
+            'changeOverTime'
           ]),
           dateNumeric: parse(responseItem.date).getTime()
         } as PriceQuery));
