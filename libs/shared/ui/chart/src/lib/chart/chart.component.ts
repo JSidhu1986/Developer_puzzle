@@ -3,23 +3,30 @@ import {
   ChangeDetectorRef,
   Component,
   Input,
-  OnInit
+  OnInit,
+  OnDestroy
 } from '@angular/core';
 import { Observable } from 'rxjs';
+import { PRICEQUERY_ERROR_MESSAGE } from '@coding-challenge/stocks/data-access-app-config'
 
 @Component({
   selector: 'coding-challenge-chart',
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css']
 })
-export class ChartComponent implements OnInit {
+export class ChartComponent implements OnInit, OnDestroy {
   @Input() data$: Observable<any>;
+  @Input() error$: Observable<any>;
+  private dataSubscription;
+  private errorSubscription;
   chartData: any;
+  errorMessage = '';
+  isError = false;
 
   chart: {
     title: string;
     type: string;
-    data: any;
+    data: [];
     columnNames: string[];
     options: any;
   };
@@ -27,13 +34,26 @@ export class ChartComponent implements OnInit {
 
   ngOnInit() {
     this.chart = {
-      title: '',
+      title: 'Stock Price History Chart',
       type: 'LineChart',
       data: [],
       columnNames: ['period', 'close'],
       options: { title: `Stock price`, width: '600', height: '400' }
     };
 
-    this.data$.subscribe(newData => (this.chartData = newData));
+    this.dataSubscription = this.data$.subscribe(newData => {
+      this.chartData = newData;
+      this.isError = false;
+    });
+
+    this.errorSubscription = this.error$.subscribe(error => {
+      this.isError = true;
+      this.errorMessage = PRICEQUERY_ERROR_MESSAGE + error.error;
+    });
+  }
+
+  ngOnDestroy() {
+    this.dataSubscription.unsubscribe();
+    this.errorSubscription.unsubscribe();
   }
 }
