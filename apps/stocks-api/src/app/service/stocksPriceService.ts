@@ -4,7 +4,7 @@ const Wreck = require('@hapi/wreck');
 
 export const getStockPrice =  function (symbol, period) {
  
-    const baseUrl = `${environment.apiURL}/beta/stock/${symbol}/chart/${period}?token=${environment.apiKey}`;
+    const baseUrl = `${environment.apiURL}/beta/stock/${symbol}/chart/${period}?chartCloseOnly=true&token=${environment.apiKey}`;
     const option = { json: true };
     return Wreck.get(baseUrl, option)
       .then((res) => {
