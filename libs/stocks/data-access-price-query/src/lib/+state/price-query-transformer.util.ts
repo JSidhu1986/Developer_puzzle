@@ -11,8 +11,15 @@ export function transformPriceQueryResponse(
       ({
         ...pick(responseItem, [
           'date',
+          'open',
+          'high',
+          'low',
           'close',
-          'volume'
+          'volume',
+          'change',
+          'changePercent',
+          'label',
+          'changeOverTime'
         ]),
         dateNumeric: parse(responseItem.date).getTime()
       } as PriceQuery)
