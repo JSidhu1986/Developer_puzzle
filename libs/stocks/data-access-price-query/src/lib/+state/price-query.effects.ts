@@ -26,7 +26,7 @@ export class PriceQueryEffects {
           .get(
             `${this.env.apiURL}/beta/stock/${action.symbol}/chart/${
               action.period
-            }?chartCloseOnly=true&token=${this.env.apiKey}`
+            }?filter=${this.env.apiFilter}&token=${this.env.apiKey}`
           )
           .pipe(
             map(resp => new PriceQueryFetched(resp as PriceQueryResponse[]))
