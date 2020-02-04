@@ -11,6 +11,15 @@ export function transformPriceQueryResponse(
       ({
         ...pick(responseItem, [
           'date',
+          'open',
+          'high',
+          'low',
+          'close',
+          'volume',
+          'change',
+          'changePercent',
+          'label',
+          'changeOverTime',
           'close'
         ]),
         dateNumeric: parse(responseItem.date).getTime()
@@ -32,6 +41,15 @@ export function transformPriceQueryResponseForCustomDates(
         ({
           ...pick(responseItem, [
             'date',
+            'open',
+            'high',
+            'low',
+            'close',
+            'volume',
+            'change',
+            'changePercent',
+            'label',
+            'changeOverTime',
             'close'
           ]),
           dateNumeric: parse(responseItem.date).getTime()
