@@ -8,7 +8,7 @@ export const environment: StocksAppConfig = {
   production: false,
   apiKey: 'Tpk_f167e083e21945f88859768ec3e487ba',
   apiURL: 'https://sandbox.iexapis.com',
-  apiFilter: 'date, close'
+  apiFilter: 'date,close'
 };
 
 /*
