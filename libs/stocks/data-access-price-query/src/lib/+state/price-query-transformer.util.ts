@@ -11,8 +11,7 @@ export function transformPriceQueryResponse(
       ({
         ...pick(responseItem, [
           'date',
-          'close',
-          'volume'
+          'close'
         ]),
         dateNumeric: parse(responseItem.date).getTime()
       } as PriceQuery)
@@ -33,8 +32,7 @@ export function transformPriceQueryResponseForCustomDates(
         ({
           ...pick(responseItem, [
             'date',
-            'close',
-            'volume'
+            'close'
           ]),
           dateNumeric: parse(responseItem.date).getTime()
         } as PriceQuery));
