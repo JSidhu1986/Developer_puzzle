@@ -3,7 +3,8 @@ import {
   ChangeDetectorRef,
   Component,
   Input,
-  OnInit
+  OnInit,
+  OnDestroy
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PRICEQUERY_ERROR_MESSAGE } from '@coding-challenge/stocks/data-access-app-config'
@@ -13,7 +14,7 @@ import { PRICEQUERY_ERROR_MESSAGE } from '@coding-challenge/stocks/data-access-a
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css']
 })
-export class ChartComponent implements OnInit {
+export class ChartComponent implements OnInit, OnDestroy {
   @Input() data$: Observable<any>;
   @Input() error$: Observable<any>;
   private dataSubscription;
