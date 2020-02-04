@@ -19,8 +19,7 @@
 
   <div class="dates-form-div">
     <mat-form-field>
-      <input matInput formControlName="selectedFromDate" [max]="maxDate" [matDatepicker]="fromDatePicker" placeholder="Choose a from date" 
-      (dateInput)="setDateRangeStart('input', $event)">
+      <input matInput formControlName="selectedFromDate" [max]="maxDate" [matDatepicker]="fromDatePicker" placeholder="Choose a from date" >
       <mat-datepicker-toggle matSuffix [for]="fromDatePicker"></mat-datepicker-toggle>
       <mat-datepicker touchUi #fromDatePicker></mat-datepicker>
     </mat-form-field>
@@ -28,7 +27,7 @@
   
   <div class="dates-form-div">  
     <mat-form-field>
-      <input matInput formControlName="selectedToDate" [max]="maxDate" [min]="minDate" [matDatepicker]="toDatePicker" placeholder="Choose a to date" >
+      <input matInput formControlName="selectedToDate" [max]="maxDate" [matDatepicker]="toDatePicker" placeholder="Choose a to date" >
       <mat-datepicker-toggle matSuffix [for]="toDatePicker"></mat-datepicker-toggle>
       <mat-datepicker touchUi #toDatePicker></mat-datepicker>
     </mat-form-field>

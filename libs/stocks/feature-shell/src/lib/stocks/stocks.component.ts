@@ -15,7 +15,6 @@ export class StocksComponent implements OnInit {
   selectedFromDate: string;
   selectedToDate: string
   maxDate = new Date();
-  minDate: Date;
   quotes$ = this.priceQuery.priceQueries$;
 
   constructor(private fb: FormBuilder, private priceQuery: PriceQueryFacade) {
@@ -32,12 +31,11 @@ export class StocksComponent implements OnInit {
     if (this.stockPickerForm.valid) {
       const { symbol, selectedFromDate,  selectedToDate} = this.stockPickerForm.value;
       const fromDate = moment(selectedFromDate).format('YYYY-MM-DD');
-      const toDate = moment(selectedToDate).format('YYYY-MM-DD');
+      let toDate = moment(selectedToDate).format('YYYY-MM-DD');
+      if(toDate < fromDate) {
+        toDate = fromDate;
+      }
       this.priceQuery.fetchQuote(symbol, "max", fromDate, toDate);
     }
-  }
-
-  setDateRangeStart(type: string, event: MatDatepickerInputEvent<Date>) {
-    this.minDate = event.value;
   }
 }

@@ -11,15 +11,8 @@ export function transformPriceQueryResponse(
       ({
         ...pick(responseItem, [
           'date',
-          'open',
-          'high',
-          'low',
           'close',
-          'volume',
-          'change',
-          'changePercent',
-          'label',
-          'changeOverTime'
+          'volume'
         ]),
         dateNumeric: parse(responseItem.date).getTime()
       } as PriceQuery)
@@ -35,20 +28,13 @@ export function transformPriceQueryResponseForCustomDates(
   const parsedToDate = parse(toDate).getTime();
   return response.filter(item => {
       const parsedDate = parse(item.date).getTime();
-      return parsedDate > parsedFromDate && parsedDate < parsedToDate;
+      return parsedDate >= parsedFromDate && parsedDate <= parsedToDate;
     }).map(responseItem =>
         ({
           ...pick(responseItem, [
             'date',
-            'open',
-            'high',
-            'low',
             'close',
-            'volume',
-            'change',
-            'changePercent',
-            'label',
-            'changeOverTime'
+            'volume'
           ]),
           dateNumeric: parse(responseItem.date).getTime()
         } as PriceQuery));
