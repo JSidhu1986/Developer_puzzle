@@ -1,7 +1,7 @@
 import { PriceQueryAction, PriceQueryActionTypes } from './price-query.actions';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { PriceQuery } from './price-query.type';
-import { transformPriceQueryResponse } from './price-query-transformer.util';
+import { transformPriceQueryResponse, transformPriceQueryResponseForCustomDates } from './price-query-transformer.util';
 
 export const PRICEQUERY_FEATURE_KEY = 'priceQuery';
 
@@ -34,10 +34,17 @@ export function priceQueryReducer(
 ): PriceQueryState {
   switch (action.type) {
     case PriceQueryActionTypes.PriceQueryFetched: {
-      return priceQueryAdapter.addAll(
-        transformPriceQueryResponse(action.queryResults),
-        state
-      );
+      if(action.fromDate && action.toDate) {
+        return priceQueryAdapter.addAll(
+          transformPriceQueryResponseForCustomDates(action.queryResults, action.fromDate, action.toDate),
+          state
+        );
+      } else {
+        return priceQueryAdapter.addAll(
+          transformPriceQueryResponse(action.queryResults),
+          state
+        );
+      }
     }
     case PriceQueryActionTypes.SelectSymbol: {
       return {
