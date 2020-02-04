@@ -4,5 +4,5 @@ export const environment: StocksAppConfig = {
   production: true,
   apiKey: '',
   apiURL: 'https://sandbox.iexapis.com',
-  apiFilter: 'date,volume,close'
+  apiFilter: 'date,close'
 };
